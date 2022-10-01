@@ -17,10 +17,10 @@
     $stmt = $PDO->prepare('SELECT * from tb_user where user_email = :email');
     $stmt->execute(array('email' => $email));
     $keyreturn = "";
-
+    $hash = $user['user_password'];
     if($stmt->rowCount() == 1){
         $user = $stmt->fetch();
-        if(password_verify("1234" , $user['user_password'])){
+        if(password_verify($senha , $hash)){
             regenerar:
             $key = uniqid("key_",true);
             $stmt = $PDO->prepare('SELECT * from tb_auth where auth_key = :key');
