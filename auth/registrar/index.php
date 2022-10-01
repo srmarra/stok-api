@@ -20,14 +20,7 @@
             
 
 
-        }else{
-            $retorno = array(
-                "status" => false,
-                "erro" => 1
-            );
 
-            echo json_encode($retorno);
-        }
 
     }else{
         $retorno = array(
