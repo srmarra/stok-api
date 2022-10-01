@@ -21,7 +21,7 @@
     if($stmt->rowCount() == 1){
         $user = $stmt->fetch();
         if(password_verify($senha, $user['user_password'])){
-            
+            regenerar:
             $key = uniqid("key_",true);
             $stmt = $PDO->prepare('SELECT * from tb_auth where auth_key = :key');
             $stmt->execute(array(
