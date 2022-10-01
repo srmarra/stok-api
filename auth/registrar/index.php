@@ -17,13 +17,13 @@
 
         if($stmt->rowCount() == 0){
             $stmt = $PDO->prepare('INSERT INTO tb_user values (null, :nome , :email , :senha');
-            $senha =  password_hash($dados->{'senha'}, PASSWORD_DEFAULT);
+            $senha =  "123";
             $nome = $dados->{'nome'};
 
             $stmt->execute(array(
                 'nome'=>$nome,
                 'email'=>$email,'senha'=>$senha));
-                
+
                 $retorno = array(
                     "status" => true,
                     "key" => 2
