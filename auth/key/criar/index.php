@@ -20,12 +20,12 @@
 
     if($stmt->rowCount() == 1){
         $user = $stmt->fetch();
-        if($senha){
+        if($senha == $user['user_password']){
             regenerar:
             $key = uniqid("key_",true);
             $stmt = $PDO->prepare('SELECT * from tb_auth where auth_key = :key');
             $stmt->execute(array(
-                "key" => $senha
+                "key" => $key
             ));
             if($stmt->rowCount() > 0){
                 goto regenerar;
@@ -47,7 +47,7 @@
                         "id" => $user['user_id']
                     ));
                     $status = true;
-                    $keyreturn = $senha;
+                    $keyreturn = $key;
                 }catch(Exception $e){
                         
 
