@@ -23,6 +23,7 @@
                     "key" => 2
                 );
            
+            echo json_encode($retorno);
 
         }else{
             $retorno = array(
