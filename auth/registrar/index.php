@@ -12,12 +12,17 @@
         $stmt = $PDO->prepare('SELECT * from tb_user where user_email = :email');
         $stmt->execute(array('email' => $email));
 
-       $retorno = array(
-            "status" => false,
-            "erro" => 2
-        );
+        if($stmt->rowCount() == 0){
 
-        echo json_encode($retorno);
+        }else{
+            $retorno = array(
+                "status" => false,
+                "erro" => 2
+            );
+    
+            echo json_encode($retorno);
+        }
+       
             
             
 
