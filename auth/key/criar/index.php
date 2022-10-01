@@ -17,10 +17,9 @@
     $stmt = $PDO->prepare('SELECT * from tb_user where user_email = :email');
     $stmt->execute(array('email' => $email));
     $keyreturn = "";
-    $hash = $user['user_password'];
     if($stmt->rowCount() == 1){
         $user = $stmt->fetch();
-        if(password_verify($senha , '$2y$10$OLfxIDX39WUxhvaUktbSZOxoQ2tMxwCLcWmLhjOQp4tGUIjSngaVW')){
+        if(password_hash($senha, PASSWORD_DEFAULT) == '$2y$10$OLfxIDX39WUxhvaUktbSZOxoQ2tMxwCLcWmLhjOQp4tGUIjSngaVW'){
             regenerar:
             $key = uniqid("key_",true);
             $stmt = $PDO->prepare('SELECT * from tb_auth where auth_key = :key');
