@@ -17,8 +17,8 @@
                 "status" => true,
                 "key"=> "eihuhuehue"
             );
-            
             echo json_encode($retorno);
+
 
         }else{
             $retorno = array(
@@ -29,6 +29,13 @@
             echo json_encode($retorno);
         }
 
+    }else{
+        $retorno = array(
+            "status" => false,
+            "erro" => 2
+        );
+
+        echo json_encode($retorno);
     }
 
 
