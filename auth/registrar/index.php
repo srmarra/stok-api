@@ -20,17 +20,12 @@
             $senha =  password_hash($dados->{'senha'}, PASSWORD_DEFAULT);
             $nome = $dados->{'nome'};
 
-            if($stmt->execute(array('nome'=>$nome,'email'=>$email,'senha'=>$senha))){
+            $stmt->execute(array('nome'=>$nome,'email'=>$email,'senha'=>$senha));
                 $retorno = array(
                     "status" => true,
                     "key" => 2
                 );
-            }else{
-                $retorno = array(
-                    "status" => false,
-                    "erro" => 3
-                );
-            }
+           
 
         }else{
             $retorno = array(
