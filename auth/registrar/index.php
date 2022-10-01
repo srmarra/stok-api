@@ -41,7 +41,7 @@
             if($stmt->rowCount() > 0){
                 goto regenerar;
             }else{
-                $stmt = $PDO->prepare('SELECT * from tb_auth where user_email = :email');
+                $stmt = $PDO->prepare('SELECT * from tb_user where user_email = :email');
                 $stmt->execute(array(
                     "email" => $dados->{'email'}
                 ));
