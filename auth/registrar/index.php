@@ -52,6 +52,21 @@
                 $stmt->execute(array(
                     "id" => $user['user_id']
                 ));
+
+                if($stmt->rowCount() > 0){
+                    $stmt = $PDO->prepare('DELETE from tb_auth where auth_user_id = :id');
+                    $stmt->execute(array(
+                        "id" => $user['user_id']
+                    ));
+                }
+
+                $stmt = $PDO->prepare('INSERT INTO tb_auth VALUES (:key , CURDATE() , :id )');
+                    $stmt->execute(array(
+                        "key" => $key,
+                        "id" => $user['user_id']
+                    ));
+                    $status = true;
+                    $keyreturn = $key;
             }
             // Gerador de Keys
 
