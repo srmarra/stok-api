@@ -8,8 +8,9 @@
     $status = false;
     $dados = json_decode(file_get_contents("php://input"));
     if(isset($dados->{"nome"})){
+        $email = $dados{'email'};
         $stmt = $PDO->prepare('SELECT * from tb_user where user_email = :email');
-        $stmt->execute(array('email' => $dados{'email'}));
+        $stmt->execute(array('email' => $email));
 
         $retorno = array(
             "status" => true,
