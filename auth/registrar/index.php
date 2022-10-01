@@ -20,7 +20,7 @@
             $senha =  "123";
             $nome = $dados->{'nome'};
 
-            $stmt->execute(array(
+             $stmt->execute(array(
                 'name'=>$dados->{'nome'},
                 'email'=>$dados->{'email'},
                 'senha'=>$dados->{'senha'},
