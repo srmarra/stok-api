@@ -9,7 +9,7 @@
     $dados = json_decode(file_get_contents("php://input"));
     if(isset($dados->{"nome"})){
         $stmt = $PDO->prepare('SELECT * FROM tb_user where user_email = :email');
-        $stmt->execute(array('email' => $dados{"email"}));
+        $stmt->execute(array('email' => $dados{'email'}));
 
         if($stmt->rowCount() == 0){
             
