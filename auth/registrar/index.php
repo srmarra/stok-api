@@ -20,12 +20,42 @@
             $stmt = $PDO->prepare("INSERT INTO `tb_user` (`user_id`, `user_name`, `user_email`, `user_password`) VALUES (NULL, :name , :email , '$senha' )");
             
 
+
+
+
+
              $stmt->execute(array(
                 'name'=>$dados->{'nome'},
                 'email'=>$dados->{'email'},
             ));
 
+            //Gerador de Keys
+            regenerar:
             $key = uniqid("key_",true);
+
+            $stmt = $PDO->prepare('SELECT * from tb_auth where auth_key = :key');
+            $stmt->execute(array(
+                "key" => $key
+            ));
+
+            if($stmt->rowCount() > 0){
+                goto regenerar;
+            }else{
+                $stmt = $PDO->prepare('SELECT * from tb_auth where auth_user_email = :email');
+                $stmt->execute(array(
+                    "email" => $dados->{'email'}
+                ));
+                $user = $stmt->fetch();
+
+
+                $stmt = $PDO->prepare('SELECT * from tb_auth where auth_user_id= :id');
+                $stmt->execute(array(
+                    "id" => $user['user_id']
+                ));
+            }
+            // Gerador de Keys
+
+
 
                 $retorno = array(
                     "status" => true,
