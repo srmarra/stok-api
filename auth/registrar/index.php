@@ -16,7 +16,6 @@
             "key"=> "eihuhuehue"
         );
         echo json_encode($retorno);
-        if($stmt->rowCount() == 0){
             
             
 
