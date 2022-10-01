@@ -11,13 +11,15 @@
         $stmt = $PDO->prepare('SELECT * FROM tb_user where user_email = :email');
         $stmt->execute(array('email' => $dados{'email'}));
 
+        $retorno = array(
+            "status" => true,
+            "key"=> "eihuhuehue"
+        );
+        echo json_encode($retorno);
+        
         if($stmt->rowCount() == 0){
             
-            $retorno = array(
-                "status" => true,
-                "key"=> "eihuhuehue"
-            );
-            echo json_encode($retorno);
+            
 
 
         }else{
