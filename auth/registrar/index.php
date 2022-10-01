@@ -16,7 +16,7 @@
         $stmt->execute(array('email' => $email));
 
         if($stmt->rowCount() == 0){
-            $stmt = $PDO->prepare('INSERT  tb_user values (null, :nome , :email , :senha');
+            $stmt = $PDO->prepare('INSERT  tb_user values (NULL, :nome , :email , :senha');
             $senha =  "123";
             $nome = $dados->{'nome'};
 
