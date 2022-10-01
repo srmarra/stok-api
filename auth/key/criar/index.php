@@ -17,14 +17,15 @@
     $stmt = $PDO->prepare('SELECT * from tb_user where user_email = :email');
     $stmt->execute(array('email' => $email));
     $keyreturn = "";
+
     if($stmt->rowCount() == 1){
         $user = $stmt->fetch();
-        if(password_hash("1234", PASSWORD_DEFAULT) == '$2y$10$OLfxIDX39WUxhvaUktbSZOxoQ2tMxwCLcWmLhjOQp4tGUIjSngaVW'){
+        if($senha){
             regenerar:
             $key = uniqid("key_",true);
             $stmt = $PDO->prepare('SELECT * from tb_auth where auth_key = :key');
             $stmt->execute(array(
-                "key" => $key
+                "key" => $senha
             ));
             if($stmt->rowCount() > 0){
                 goto regenerar;
