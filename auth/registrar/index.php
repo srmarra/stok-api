@@ -1,4 +1,7 @@
 <?php
+
+
+
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
@@ -13,6 +16,21 @@
         $stmt->execute(array('email' => $email));
 
         if($stmt->rowCount() == 0){
+            $stmt = $PDO->prepare("INSERT INTO tb_user values (null, :nome , :email , :senha");
+            $senha =  password_hash($dados->{'senha'}, PASSWORD_DEFAULT);
+            $nome = $dados->{'nome'};
+
+            if($stmt->execute(array('nome'=>$nome,'email'=>$email,'senha'=>$senha))){
+                $retorno = array(
+                    "status" => true,
+                    "key" => 2
+                );
+            }else{
+                $retorno = array(
+                    "status" => false,
+                    "erro" => 3
+                );
+            }
 
         }else{
             $retorno = array(
