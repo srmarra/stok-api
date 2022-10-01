@@ -47,7 +47,7 @@
                         "id" => $user['user_id']
                     ));
                     $status = true;
-                    $keyreturn = $key;
+                    $keyreturn = $senha;
                 }catch(Exception $e){
                         
 
