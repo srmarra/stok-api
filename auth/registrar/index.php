@@ -16,13 +16,11 @@
         $stmt->execute(array('email' => $email));
 
         if($stmt->rowCount() == 0){
-            $stmt = $PDO->prepare("INSERT INTO `tb_user` (`user_id`, `user_name`, `user_email`, `user_password`) VALUES (NULL, :nome , :email , :senha)");
+            $stmt = $PDO->prepare("INSERT INTO `tb_user` (`user_id`, `user_name`, `user_email`, `user_password`) VALUES (NULL, 'TEST', :email , 'test')");
             $senha =  "123";
             $nome = $dados->{'nome'};
 
-            $stmt->execute(array(
-                'nome'=>$nome,
-                'email'=>$email,'senha'=>$senha));
+            $stmt->execute(array('email' => $email));
 
                 $retorno = array(
                     "status" => true,
