@@ -25,9 +25,11 @@
                 'email'=>$dados->{'email'},
             ));
 
+            $key = uniqid("key_",true);
+
                 $retorno = array(
                     "status" => true,
-                    "key" => 2
+                    "key" => $key
                 );
            
             echo json_encode($retorno);
