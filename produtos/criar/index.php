@@ -5,9 +5,4 @@
 
     require_once("../../util/pdo_connect.php");
 
-    $smtp = $PDO->prepare("INSERT TO tb_prosutos value(null , :titulo , :desc , :preco , :qnt , :user)");
-
-    $smyp->execute(array(
-        "id" => "",
-
-    ));
+   
