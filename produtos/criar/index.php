@@ -16,7 +16,7 @@
     ));
 
 
-    if($smtp0->rowCount() >0){
+    if($smtp->rowCount() >0){
         $json = array(
             "status"=>true,
             "key" =>$key
