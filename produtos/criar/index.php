@@ -16,7 +16,7 @@
         "status"=>false,
         "key" =>$key
     );
-    
+    echo json_encode($json);
 
 
     
