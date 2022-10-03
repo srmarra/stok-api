@@ -12,5 +12,12 @@
         "key"=>$key
     ));
 
+    if($smtp->rowCount() > 0){
+       
+    }else{
+       
+    }
+
+
     
     
