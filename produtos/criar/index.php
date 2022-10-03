@@ -8,12 +8,27 @@
     $dados = json_decode($Dados_Recebidos);
     $key = $dados->{'key'};
     
-    $json = array(
-        "status"=>false,
-        "key" =>$key
-    );
-    echo json_encode($json);
+    
 
+    $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = :key ");
+    $smtp->execute(array(
+        "key"=>$key
+    ));
+
+
+    if($smtp0->rowCount() >0){
+        $json = array(
+            "status"=>true,
+            "key" =>$key
+        );
+        echo json_encode($json);
+    }else{
+        $json = array(
+            "status"=>false,
+            "key" =>$key
+        );
+        echo json_encode($json);
+    }
 
     
     
