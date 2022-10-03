@@ -7,7 +7,7 @@
     $Dados_Recebidos = file_get_contents("php://input");
     $key = $Dados_Recebidos['key'];
     $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = :key ");
-    $user = $stmp->execute(array(
+    $stmp->execute(array(
         "key"=>$key
     ));
 
