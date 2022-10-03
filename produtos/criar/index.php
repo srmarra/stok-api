@@ -17,15 +17,15 @@
 
 
     if($smtp->rowCount() >0){
+        $user = $smtp->fetch();
         $json = array(
             "status"=>true,
-            "key" =>$key
+            "id"=>$user['user_id']
         );
         echo json_encode($json);
     }else{
         $json = array(
             "status"=>false,
-            "key" =>$key
         );
         echo json_encode($json);
     }
