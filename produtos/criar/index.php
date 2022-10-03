@@ -4,27 +4,12 @@
     header("Access-Control-Allow-Headers: *");
 
     require_once("../../util/pdo_connect.php");
-    $key = "";
+    $Dados_Recebidos = file_get_contents("php://input");
+    $key = $Dados_Recebidos['key'];
     $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = :key ");
     $user = $stmp->execute(array(
         "key"=>$key
     ));
 
-    if($smtp->rowCount() > 100){
-        $smtp = $PDO->prepare("INSERT TO tb_prosutos value(null , :titulo , :desc , :preco , :qnt , :user)");
-
-        $smtp->execute(array(
-            "id" => "",
-            "desc"=> "",        
-            "preco"=> "",
-            "qnt"=>"",
-            "user"=>""
-        ));
-    }else{
-        $Erro = array(
-            "status"=>false
-        );
-        echo json_encode($Erro);
-    }
-
+    
     
