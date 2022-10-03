@@ -12,6 +12,10 @@
         "key"=>$key
     ));
 
+    $json = array(
+        "status"=>false,
+        "key" =>$key
+    );
     
 
 
