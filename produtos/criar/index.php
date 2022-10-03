@@ -12,10 +12,14 @@
     ));
 
     if($smtp->rowCount() > 0){
-        
+        $json = array(
+            "status"=>true
+        );
+        echo json_encode($json);
     }else{
         $json = array(
-            "status"=>false
+            "status"=>false,
+            "key" =>$key
         );
         echo json_encode($json);
     }
