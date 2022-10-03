@@ -34,6 +34,9 @@
             );
             array_push($json,$in);
         }
+
+        echo json_encode($json);
+
     }else{
 
         $json = array(
