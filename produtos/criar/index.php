@@ -8,7 +8,7 @@
     $dados = json_decode($Dados_Recebidos);
     $key = $dados['titulo'];
     $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = ".$key);
-    $smtp->execute(array());
+    $smtp->execute(array(""=>""));
 
     if($smtp->rowCount() > 0){
         $json = array(
