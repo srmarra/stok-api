@@ -6,21 +6,11 @@
     require_once("../../util/pdo_connect.php");
     $Dados_Recebidos = file_get_contents("php://input");
     $dados = json_decode($Dados_Recebidos);
-    $key = $dados['titulo'];
-    $result = $PDO->query("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = ".$key);
-
-    if($result->rowCount() > 0){
-        $json = array(
-            "status"=>true
-        );
-    }else{
-        $json = array(
-            "status"=>false,
-            "key" =>$key
-        );
-        echo json_encode($json);
-    }
-
+    $key = $dados['key'];
+    $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = :key ");
+    $smtp->execute(array(
+        "key"=>$key
+    ));
 
     
     
