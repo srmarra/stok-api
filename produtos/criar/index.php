@@ -19,14 +19,14 @@
     if($smtp->rowCount() >0){
         $user = $smtp->fetch();
 
-        $smtp = $PDO->prepare("INSERT INTO tb_produto values(null, :titulo ,:desc , :preco , :qnt , :id )");
+        $smtp = $PDO->prepare("INSERT INTO tb_produtos values(null, :titulo , :descr , :preco , :qnt , :id )");
         
         $smtp->execute(array(
-            "id"=>$user['user_id'],
             "titulo"=>$dados->{'titulo'},
-            "desc"=>$dados->{'descricao'},
+            "descr"=>$dados->{'descricao'},
             "preco"=>$dados->{'preco'},
-            "qnt"=>$dados->{'quantidade'}
+            "qnt"=>$dados->{'quantidade'},
+            "id"=>$user['user_id']
         ));
         
 
