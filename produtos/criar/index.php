@@ -23,10 +23,10 @@
         
         $smtp->execute(array(
             "id"=>$user['user_id'],
-            "titulo"=>$dados['titulo'],
-            "descricao"=>$dados['descricao'],
-            "preco"=>$dados['preco'],
-            "qnt"=>$dados['qnt']
+            "titulo"=>$dados->{'titulo'},
+            "descricao"=>$dados->{'descricao'},
+            "preco"=>$dados->{'preco'},
+            "qnt"=>$dados->{'qnt'}
         ));
         
 
