@@ -18,6 +18,18 @@
 
     if($smtp->rowCount() >0){
         $user = $smtp->fetch();
+
+        $smtp = $PDO->prepare("INSERT INTO tb_produto values(null, :titulo ,:desc , :preco , :qnt , :id )");
+        
+        $smtp->execute(array(
+            "id"=>$user['user_id'],
+            "titulo"=>$dados['titulo'],
+            "descricao"=>$dados['descricao'],
+            "preco"=>$dados['preco'],
+            "qnt"=>$dados['qnt']
+        ));
+        
+
         $json = array(
             "status"=>true,
             "id"=>$user['user_id']
