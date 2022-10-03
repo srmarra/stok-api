@@ -17,9 +17,24 @@
     ));
 
     if($smtp->rowCount() >0){
-        $json = array(
-            "status"=>false,
-        );
+        $user = $smtp->fetch();
+
+        $smtp= $PDO->prepare("SELECT * FROM tb_produtos where prod_user_id = :id");
+        $smtp->execute(array(
+            "id"=>$user['user_id']
+        ));
+        $json = array();
+        while($resp = $smtp->fetch()){
+            $in = array(
+                "id"=>$resp['prod_id'],
+                "titulo"=>$resp['prod_titulo'],
+                "desc"=>$resp['prod_desc'],
+                "preco"=>$resp['prod_preco'],
+                "qnt"=>$resp['prod_qnt'],
+            );
+            array_push($json,$in);
+        }
+
         echo json_encode($json);
 
     }else{
