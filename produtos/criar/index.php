@@ -26,7 +26,7 @@
             "titulo"=>$dados->{'titulo'},
             "descricao"=>$dados->{'descricao'},
             "preco"=>$dados->{'preco'},
-            "qnt"=>$dados->{'qnt'}
+            "qnt"=>$dados->{'quantidade'}
         ));
         
 
