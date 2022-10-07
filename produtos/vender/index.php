@@ -35,7 +35,7 @@
 
             $json = array(
                 "status"=> true,
-                "qnt"=> $qnt
+                "qnt"=> $qnt+1
             );
             echo json_encode($json);
             
