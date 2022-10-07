@@ -25,7 +25,7 @@
         ));
 
         $prod = $smtp->fetch();
-        $qnt = $prod['prod_qnt'] - 1;
+        $qnt = $prod['prod_qnt'];
         if($qnt >= 0){
             $smtp = $PDO->prepare("UPDATE tb_produto set prod_qnt = :qnt where = prod_id = :id");
             $smtp->execute(array(
