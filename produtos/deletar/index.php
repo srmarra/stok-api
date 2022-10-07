@@ -10,9 +10,24 @@
     $key = $dados->{'key'};
     $id = $dados->{'id'};
 
-    $json = array(
-        "key" => $key,
-        "id" => $id
-    );
+    
+    
 
-    echo (json_encode($json));
+
+    $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = :key ");
+    $smtp->execute(array(
+        "key"=>$key
+    ));
+
+
+    if($smtp->rowCount() >0){
+        $user = $smtp->fetch();
+        $smtp = $PDO->prepare("DELETE from tb_produtos where prod_id = :id");
+        $smtp->execute(array(
+            "id"=>$id
+        ));
+    }else{
+        $json = array(
+            "status" => false
+        );
+    }
