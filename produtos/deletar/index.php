@@ -26,8 +26,11 @@
         $smtp->execute(array(
             "id"=>$id
         ));
+        $json = array("status" => true);
+        echo json_encode($json);
     }else{
         $json = array(
             "status" => false
         );
+        echo json_encode($json);
     }
