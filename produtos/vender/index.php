@@ -1,5 +1,5 @@
 <?php
-
+    require_once("../../util/pdo_connect.php");
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
@@ -17,6 +17,7 @@
 
 
     if($smtp->rowCount() >0){
+    
         $smtp = $PDO->prepare("SELECT * from tb_produtos where prod_id = :id");
 
         $smtp->execute(array(
