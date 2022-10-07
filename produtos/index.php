@@ -19,7 +19,7 @@
     if($smtp->rowCount() >0){
         $user = $smtp->fetch();
 
-        $smtp= $PDO->prepare("SELECT * FROM tb_produtos where prod_user_id = :id order by prod_id asc");
+        $smtp= $PDO->prepare("SELECT * FROM tb_produtos where prod_user_id = :id order by prod_id desc");
         $smtp->execute(array(
             "id"=>$user['user_id']
         ));
