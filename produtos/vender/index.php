@@ -4,6 +4,53 @@
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
     
-    $json = array("status"=>false);
+    $Recebido = file_get_contents("php://input");
+    $dados = json_decode($Recebido);
 
-    echo json_encode($json);
+    $key = $dados->{'key'};
+    $id = $dados->{'id'};
+
+    $smtp = $PDO->prepare("SELECT A.auth_key,U.user_id FROM tb_auth A INNER JOIN tb_user U on U.user_id = A.auth_user_id WHERE A.auth_key = :key ");
+    $smtp->execute(array(
+        "key"=>$key
+    ));
+
+    if($smtp->rowCount() >0){
+        $smtp = $PDO->prepare("SELECT * from tb_produtos where prod_id = :id");
+
+        $smtp->execute(array(
+            "id"=>$id
+        ));
+
+        $prod = $smtp->fetch();
+        $qnt = $prod['prod_qnt'] - 1;
+        if($qnt >= 0){
+            $smtp = $PDO->prepare("UPDATE tb_produto set prod_qnt = :qnt where = prod_id = :id");
+            $smtp->execute(array(
+                "qnt"=> $qnt,
+                "id"=> $id
+            ));
+
+            $json = array(
+                "status"=> true,
+                "qnt"=> $qnt
+            );
+            echo json_encode($json);
+            
+
+
+        }else{
+            $json = array(
+                "status"=> true,
+                "qnt"=> 0
+            );
+            echo json_encode($json);
+        }
+
+    }else{
+        $json = array("status"=>false);
+
+        echo json_encode($json);
+    }
+
+    
