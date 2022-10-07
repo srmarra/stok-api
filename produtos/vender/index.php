@@ -15,11 +15,26 @@
         "key"=>$key
     ));
 
+
     if($smtp->rowCount() >0){
-        
+        $smtp = $PDO->prepare("SELECT * from tb_produtos where prod_id = :id");
+
+        $smtp->execute(array(
+            "id"=>$id
+        ));
+
+        $prod = $smtp->fetch();
+        $qnt = $prod['prod_qnt'] - 1;
+        if($qnt >= 0){
+            $smtp = $PDO->prepare("UPDATE tb_produto set prod_qnt = :qnt where = prod_id = :id");
+            $smtp->execute(array(
+                "qnt"=> $qnt,
+                "id"=> $id
+            ));
+
             $json = array(
                 "status"=> true,
-                "qnt"=> 0
+                "qnt"=> $qnt
             );
             echo json_encode($json);
             
@@ -28,9 +43,9 @@
         }else{
             $json = array(
                 "status"=> true,
-                "qnt"=> 0
+                "qnt"=> $qnt
             );
-            echo json_encode($json);
+        echo json_encode($json);
         }
 
     }else{
