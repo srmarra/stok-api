@@ -8,9 +8,11 @@
     $Dados_Recebidos = file_get_contents("php://input");
     $dados = json_decode($Dados_Recebidos);
 
+
+
     $json = array(
         "status" => true,
-        "Titulo"=> $dados->{'titulo'}
+        "Titulo"=> $dados->{'id'}
     );  
 
     
