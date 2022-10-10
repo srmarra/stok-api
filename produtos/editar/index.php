@@ -8,12 +8,20 @@
     $Dados_Recebidos = file_get_contents("php://input");
     $dados = json_decode($Dados_Recebidos);
 
+    $smtp = $PDO->prepare("UPDATE tb_produtos SET prod_titulo = :titulo , prod_desc = :desc , prod_preco = :preco, prod_qnt = :qnt");
+    $smtp->execute(array(
+        "titulo"=> $dados->{'titulo'},
+        "desc"=> $dados->{'descricao'},
+        "preco"=> $dados->{'preco'},
+        "qnt"=> $dados->{'quantidade'},
+    ));
 
 
     $json = array(
         "status" => true,
-        "Titulo"=> $dados->{'id'}
     );  
+
+
 
     
     echo json_encode($json);
