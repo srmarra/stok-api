@@ -8,7 +8,8 @@
     $dados = json_decode($Dados_Recebidos);
 
     $json = array(
-        "status" => true
+        "status" => true,
+        "Titulo"=> $dados->{'titulo'}
     );  
 
     
