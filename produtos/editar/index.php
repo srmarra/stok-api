@@ -1,5 +1,4 @@
 <?php
-    require_once("../../util/pdo_connect.php");
 
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *");
