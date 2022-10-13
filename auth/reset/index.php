@@ -19,3 +19,5 @@
         "key"=>$key_reset,
         "code"=>$codigoRedefinicao
     );
+
+    echo json_encode($json);
