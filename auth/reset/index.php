@@ -2,5 +2,5 @@
 
     require_once("../../util/pdo_connect.php");
 
-    $codigoRedefinicao = rand(0,9999);
+    $codigoRedefinicao = rand(1000,9999);
     echo $codigoRedefinicao;
