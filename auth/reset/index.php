@@ -69,7 +69,8 @@
 
 }else{
     $json = array(
-        "status"=> false
+        "status"=> false,
+        "email" => $dados->{'email'}
     );
 
     echo json_encode($json);
