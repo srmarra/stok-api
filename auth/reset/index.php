@@ -20,31 +20,34 @@
     ));
 
     if($smtp->rowCount() == 1){
+        $user = $smtp->fetch();
+        $codigoRedefinicao = rand(1000,9999);
 
-    
+        keyGerar:
+        $key_reset = uniqid("key_",true);
 
-    // 
+        $smtp = $PDO->prepare("SELECT * from tb_resetPass where reset_key = :key");
+        $smtp->execute(array("key"=>$key_reset));
 
+        if($smtp->rowCount() > 0){goto keyGerar;}
 
-
-    $codigoRedefinicao = rand(1000,9999);
-
-    keyGerar:
-    $key_reset = uniqid("key_",true);
-
-
-
-    $envio = EnviarEmail($codigoRedefinicao);
-
-    
+        $smtp = $PDO->prepare("INSERT INTO tb_resetPass values (:key , CURDATE(), :userid)");
+        $smtp->execute(array(
+            "key"=>$key_reset,
+            "userid"=>$user['user_id']
+        ));
 
 
-    $json = array(
-        "key"=>$key_reset,
-        "status"=> $envio
-    );
+        $envio = EnviarEmail($codigoRedefinicao);
 
-    echo json_encode($json);
+        
+
+        $json = array(
+            "key"=>$key_reset,
+            "status"=> $envio
+        );
+
+        echo json_encode($json);
 
 }else{
     $json = array(
@@ -54,6 +57,8 @@
 
     echo json_encode($json);
 }
+
+
 
 
 
