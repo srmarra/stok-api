@@ -27,8 +27,10 @@ if($smtp->rowCount() == 1){
 
     if($smtp->rowCount() == 1){
 
-        $smtp = $PDO->prepare("UPDATE tb_resetPass set reset_status = 1");
-
+        $smtp = $PDO->prepare("UPDATE tb_resetPass set reset_status = 1 where reset_key = :key");
+        $smtp->execute(array(
+            "key" => $dados->{'key'}
+        ));
         $json=array(
             "status"=>true
         );
