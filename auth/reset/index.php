@@ -31,8 +31,8 @@
 
         if($smtp->rowCount() > 0){goto keyGerar;}
 
-        $smtp = $PDO->prepare("SELECT * from tb_resetPass where reset_user_id = :id");
-        $smtp->execute(array("id"=>$user['user_id']));
+        // $smtp = $PDO->prepare("SELECT * from tb_resetPass where reset_user_id = :id");
+        // $smtp->execute(array("id"=>$user['user_id']));
 
         // if($smtp->rowCount() > 0){
         //     $smtp = $PDO->prepare("DELETE from tb_resetPass where reset_user_id = :id");
