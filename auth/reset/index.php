@@ -88,10 +88,13 @@ function EnviarEmail($codigoRedefinicao){
     $para = "herick.marra1@gmail.com";
     $Assunto = "STOK Redefinir senha";
     $body = "
-    <div>
-        <h1>Seu código de redefinição é:</h1>
-        <h2>$codigoRedefinicao</h2>
-    </div>
+    <div style='width: 600px; background-color: #fff; text-align: center;'>
+    <nav style='width: 100%; height: 50px; background-color: #3F416C;'></nav>
+    <h1 style='color: #eba61e;'>STOK</h1>
+    <h1 style='font-size: 25px;'>SEU CÓDIGO DE REDEFINIÇÃO É:</h1>
+    <h2 style='font-size: 35px; margin: 30px auto; width: 100px; border: 1px solid #3F416C;'>$codigoRedefinicao</h2>
+    <nav style='width: 100%; height: 50px; background-color: #3F416C;'></nav>
+</div>
     ";
 
 
