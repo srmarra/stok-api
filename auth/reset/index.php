@@ -1,7 +1,7 @@
 <?php
 
 
-    // header('Content-Type: application/json');
+    header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
     $Dados_Recebidos = file_get_contents("php://input");
@@ -34,10 +34,10 @@
         $smtp = $PDO->prepare("SELECT * from tb_resetPass where reset_user_id = :id");
         $smtp->execute(array("id"=>$user['user_id']));
 
-        if($smtp->rowCount() > 0){
-            $smtp = $PDO->prepare("DELETE from tb_resetPass where reset_user_id = :id");
-            $smtp->execute(array("id"=>$user['user_id']));
-        }
+        // if($smtp->rowCount() > 0){
+        //     $smtp = $PDO->prepare("DELETE from tb_resetPass where reset_user_id = :id");
+        //     $smtp->execute(array("id"=>$user['user_id']));
+        // }
 
 
         $smtp = $PDO->prepare("INSERT INTO tb_resetPass values (:key , CURDATE(), :code , null , :userid)");
