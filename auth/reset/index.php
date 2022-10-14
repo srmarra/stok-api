@@ -1,6 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
 
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *");
@@ -8,9 +7,24 @@ use PHPMailer\PHPMailer\PHPMailer;
     $Dados_Recebidos = file_get_contents("php://input");
     $dados = json_decode($Dados_Recebidos);
 
-    // 
+    $email = $dados->{'email'};
 
     require_once("../../util/pdo_connect.php");//Conexão com banco de dados
+
+
+
+    $sntp = $PDO->prepare("SELECT * from tb_user where user_email = :email");
+
+    $smtp->execute(array(
+        "email"=>$email
+    ));
+
+    if($smtp->rowCount > 0){
+
+    
+
+    // 
+
 
 
     $codigoRedefinicao = rand(1000,9999);
@@ -52,3 +66,11 @@ use PHPMailer\PHPMailer\PHPMailer;
     );
 
     echo json_encode($json);
+
+}else{
+    $json = array(
+        "status"=> false
+    );
+
+    echo json_encode($json);
+}
