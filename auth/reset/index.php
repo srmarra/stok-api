@@ -34,8 +34,32 @@
 
 
 
+    EnviarEmail($codigoRedefinicao);
+
+    
 
 
+    $json = array(
+        "key"=>$key_reset,
+        "status"=> $envio
+    );
+
+    echo json_encode($json);
+
+}else{
+    $json = array(
+        "status"=> false,
+        "email" => $dados->{'email'}
+    );
+
+    echo json_encode($json);
+}
+
+
+
+
+
+function EnviarEmail($codigoRedefinicao){
     // Configuração do email
     $headers  = "From: Stok <suporte@stok.tech>\n";
     $headers .= "X-Sender: Stok <suporte@stok.com>\n";
@@ -54,24 +78,7 @@
     </div>
     ";
 
-    
-    
+
+
     $envio = mail($para,$Assunto,$body,$headers);
-
-
-    $json = array(
-        "key"=>$key_reset,
-        "code"=>$codigoRedefinicao,
-        "status"=> $envio
-    );
-
-    echo json_encode($json);
-
-}else{
-    $json = array(
-        "status"=> false,
-        "email" => $dados->{'email'}
-    );
-
-    echo json_encode($json);
 }
