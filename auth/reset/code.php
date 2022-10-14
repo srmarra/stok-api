@@ -18,11 +18,23 @@ $smtp->execute(array(
 
 if($smtp->rowCount() == 1){
 
-    
+    $smtp = $PDO->prepare("SELECT * FROM tb_resetPass where reset_key = :key and reset_code = :code");
 
-    $json=array(
-        "status"=>true
-    );
+    $smtp->execute(array(
+        "key"=> $dados->{'key'},
+        "code"=> $dados->{'code'}
+    ));
+
+    if($smtp->rowCount() == 1){
+        $json=array(
+            "status"=>true
+        );
+    }else{
+        $json=array(
+            "status"=>false
+        );
+    }
+    
 
     echo json_encode($json);
 }else{
