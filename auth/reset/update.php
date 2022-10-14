@@ -20,11 +20,11 @@ $smtp->execute(array(
 
 if($smtp->rowCount() == 1){
     $reset = $smtp->fetch();
-    $senha =  password_hash($dados->{'senha'}, PASSWORD_DEFAULT);
+    
+    $smtp = $PDO->prepare("UPDATE tb_user SET user_email = :senha where user_id = :id");
 
-    $smtp = $PDO->prepare("UPDATE tb_user SET user_password = :senha where user_id = :id");
     $smtp->execute(array(
-        "senha"=> $senha,
+        "senha"=> $dados->{'senha'},
         "id"=> $reset['reset_user_id']
     ));
 
