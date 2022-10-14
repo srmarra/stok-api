@@ -14,11 +14,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 
     // Configuração do email
-    $headers  = "From: Stok <stok@hmarra.tech>\n";
-    $headers .= "X-Sender: testsite <mail@testsite.com>\n";
+    $headers  = "From: Stok <suporte@stok.tech>\n";
+    $headers .= "X-Sender: Stok <suporte@stok.com>\n";
     $headers .= 'X-Mailer: PHP/' . phpversion();
     $headers .= "X-Priority: 1\n"; // Urgent message!
-    $headers .= "Return-Path: stok@hmarra.tech\n"; // Return path for errors
+    $headers .= "Return-Path: suporte@stok.com\n"; // Return path for errors
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\n";
 
