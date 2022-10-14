@@ -21,16 +21,16 @@ $smtp->execute(array(
 if($smtp->rowCount() == 1){
     $reset = $smtp->fetch();
 
-    $smtp = $PDO->prepare("UPDATE tb_user set user_email = :senha where user_id = :id");
+    $smtp = $PDO->prepare("UPDATE tb_user SET user_email = :senha where user_id = :id");
 
     $smtp->execute(array(
         "senha"=> $dados->{'senha'},
-        "id"=> $reset->{'reset_user_id'}
+        "id"=> $reset['reset_user_id']
     ));
 
     
     $json = array(
-        "status"=>true
+        "status"=>true,
     );
 
     echo json_encode($json);
