@@ -19,7 +19,7 @@
         "email"=>$email
     ));
 
-    if($smtp->rowCount == 1){
+    if($smtp->rowCount() == 1){
 
     
 
