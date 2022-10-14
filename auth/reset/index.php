@@ -34,7 +34,7 @@
 
 
 
-    EnviarEmail($codigoRedefinicao);
+    $envio = EnviarEmail($codigoRedefinicao);
 
     
 
@@ -80,5 +80,5 @@ function EnviarEmail($codigoRedefinicao){
 
 
 
-    $envio = mail($para,$Assunto,$body,$headers);
+    return mail($para,$Assunto,$body,$headers);
 }
