@@ -31,10 +31,20 @@
 
         if($smtp->rowCount() > 0){goto keyGerar;}
 
-        $smtp = $PDO->prepare("INSERT INTO tb_resetPass values (:key , CURDATE(), :userid)");
+        $smtp = $PDO->prepare("SELECT * from tb_resetPass where reset_user_id = :id");
+        $smtp->execute(array("id"=>$user['user_id']));
+
+        if($smtp->rowCount() > 0){
+            $smtp = $PDO->prepare("DELETE from tb_resetPass where reset_user_id = :id");
+            $smtp->execute(array("id"=>$user['user_id']));
+        }
+
+
+        $smtp = $PDO->prepare("INSERT INTO tb_resetPass values (:key , CURDATE(), :code , null , :userid)");
         $smtp->execute(array(
             "key"=>$key_reset,
-            "userid"=>$user['user_id']
+            "userid"=>$user['user_id'],
+            "code"=>$codigoRedefinicao
         ));
 
 
