@@ -27,7 +27,7 @@ use PHPMailer\PHPMailer\PHPMailer;
     $body = "<h1>test</h1>";
 
     
-    mail($para,$Assunto,$body,$headers);
+    $envio = mail($para,$Assunto,$body,$headers);
     $codigoRedefinicao = rand(1000,9999);
 
     keyGerar:
@@ -36,7 +36,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 
     $json = array(
         "key"=>$key_reset,
-        "code"=>$codigoRedefinicao
+        "code"=>$codigoRedefinicao,
+        "status"=> $envio
     );
 
     echo json_encode($json);
