@@ -40,11 +40,12 @@
         // }
 
 
-        $smtp = $PDO->prepare("INSERT INTO tb_resetPass values (:key , CURDATE(), :code , null , :userid)");
+        $smtp = $PDO->prepare("INSERT INTO tb_resetPass values (:key , CURDATE(), :code , 0, :userid)");
         $smtp->execute(array(
             "key"=>$key_reset,
-            "userid"=>$user['user_id'],
-            "code"=>$codigoRedefinicao
+            "code"=>$codigoRedefinicao,
+            "userid"=>$user['user_id']
+            
         ));
 
 
