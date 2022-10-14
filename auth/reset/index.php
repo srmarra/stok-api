@@ -13,7 +13,6 @@ use PHPMailer\PHPMailer\PHPMailer;
     require_once("../../util/pdo_connect.php");//Conexão com banco de dados
 
 
-    $envio = mail($para,$Assunto,$body,$headers);
     $codigoRedefinicao = rand(1000,9999);
 
     keyGerar:
@@ -43,6 +42,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
     
     
+    $envio = mail($para,$Assunto,$body,$headers);
 
 
     $json = array(
