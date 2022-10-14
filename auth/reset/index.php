@@ -13,7 +13,7 @@
 
 
 
-    $sntp = $PDO->prepare("SELECT * from tb_user where user_email = :email");
+    $smtp = $PDO->prepare("SELECT * from tb_user where user_email = :email");
 
     $smtp->execute(array(
         "email"=>$email
