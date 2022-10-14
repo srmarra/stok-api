@@ -13,6 +13,16 @@ use PHPMailer\PHPMailer\PHPMailer;
     require_once("../../util/pdo_connect.php");//Conexão com banco de dados
 
 
+    $envio = mail($para,$Assunto,$body,$headers);
+    $codigoRedefinicao = rand(1000,9999);
+
+    keyGerar:
+    $key_reset = uniqid("key_",true);
+
+
+
+
+
     // Configuração do email
     $headers  = "From: Stok <suporte@stok.tech>\n";
     $headers .= "X-Sender: Stok <suporte@stok.com>\n";
@@ -24,14 +34,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 
     $para = "herick.marra1@gmail.com";
     $Assunto = "STOK Redefinir senha";
-    $body = "<h1>test</h1>";
+    $body = "
+    <div>
+        <h1>Seu código de redefinição é:</h1>
+        <h2>$codigoRedefinicao</h2>
+    </div>
+    ";
 
     
-    $envio = mail($para,$Assunto,$body,$headers);
-    $codigoRedefinicao = rand(1000,9999);
-
-    keyGerar:
-    $key_reset = uniqid("key_",true);
+    
 
 
     $json = array(
