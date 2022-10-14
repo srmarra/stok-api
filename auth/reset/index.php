@@ -1,7 +1,7 @@
 <?php
 
 
-    header('Content-Type: application/json');
+    // header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
     $Dados_Recebidos = file_get_contents("php://input");
