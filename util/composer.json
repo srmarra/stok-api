@@ -1,0 +1,17 @@
+{
+    "name": "stok-api/gerenciador-de-estoque",
+    "description": "Gerenciador de estoque",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "StokApi\\GerenciadorDeEstoque\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SrMarra",
+            "email": "110024369+srmarra@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
